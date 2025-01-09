@@ -1,0 +1,20 @@
+{
+  "00123456789": {
+    "numeroAgencia": "001",
+    "numeroConta": "23456789",
+    "nomeCliente": "João Silva",
+    "saldo": 1500.75
+  },
+  "00234567890": {
+    "numeroAgencia": "002",
+    "numeroConta": "34567890",
+    "nomeCliente": "Maria Oliveira",
+    "saldo": 2750.5
+  },
+  "00345678901": {
+    "numeroAgencia": "003",
+    "numeroConta": "45678901",
+    "nomeCliente": "Pedro Santos",
+    "saldo": 3100.0
+  }
+}
