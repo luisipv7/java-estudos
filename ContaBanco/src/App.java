@@ -25,9 +25,11 @@ public class App {
                 System.out.println("Digite o número da conta:");
                 int numeroConta = scanner.nextInt();
                 System.out.println("Digite o nome do titular:");
-                String nomeTitular = scanner.next();
+                scanner.nextLine(); // Consumir a quebra de linha pendente
+                String nomeTitular = scanner.nextLine();
                 System.out.println("Digite o saldo inicial:");
-                double saldoInicial = scanner.nextDouble();
+                String saldoStr = scanner.next().replace(",", ".");
+                double saldoInicial = Double.parseDouble(saldoStr);
                 conta.abrirConta(numeroAgencia, numeroConta, nomeTitular, saldoInicial);
                 break;
             case 2:

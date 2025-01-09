@@ -69,11 +69,11 @@ public class ContaBanco {
     // Método para salvar o mapa atualizado como arquivo JSON
     private static void salvarArquivoJSON(String caminho, Map<String, Map<String, Object>> contas) throws IOException {
         StringBuilder jsonBuilder = new StringBuilder("{");
-
+    
         for (Map.Entry<String, Map<String, Object>> entry : contas.entrySet()) {
             jsonBuilder.append("\"").append(entry.getKey()).append("\": {");
             Map<String, Object> conta = entry.getValue();
-
+    
             for (Map.Entry<String, Object> campo : conta.entrySet()) {
                 jsonBuilder.append("\"").append(campo.getKey()).append("\": ");
                 if (campo.getValue() instanceof String) {
@@ -88,10 +88,13 @@ public class ContaBanco {
         }
         jsonBuilder.delete(jsonBuilder.length() - 2, jsonBuilder.length()); // Remove a última vírgula
         jsonBuilder.append("}");
-
-        Files.write(Paths.get(System.getProperty("user.dir") + caminho), jsonBuilder.toString().getBytes());
+    
+        Files.write(Paths.get(caminho), jsonBuilder.toString().getBytes());
+    
+        // Verificação se o arquivo foi salvo
+        System.out.println("Arquivo atualizado: " + caminho);
     }
-
+    
     // Método de depósito
     public void depositar(double valor, int numeroAgencia, int numeroConta) {
         try {
@@ -156,8 +159,14 @@ public class ContaBanco {
                 Map<String, Object> contaOrigem = contas.get(keyOrigem);
                 Map<String, Object> contaDestino = contas.get(keyDestino);
 
+                System.out.println("Conta de origem: " + contaOrigem);
+                System.out.println("Conta de destino: " + contaDestino);
+
                 double saldoOrigem = (double) contaOrigem.get("saldo");
                 double saldoDestino = (double) contaDestino.get("saldo");
+
+                System.out.println("Saldo de origem: " + saldoOrigem);
+                System.out.println("Saldo de destino: " + saldoDestino);
 
                 if (saldoOrigem >= valor) {
                     saldoOrigem -= valor;
@@ -166,10 +175,14 @@ public class ContaBanco {
                     contaOrigem.put("saldo", saldoOrigem);
                     contaDestino.put("saldo", saldoDestino);
 
+                    System.out.println("Conta de origem após transferência: " + contaOrigem);
+                    System.out.println("Conta de destino após transferência: " + contaDestino);
+
                     contas.put(keyOrigem, contaOrigem);
                     contas.put(keyDestino, contaDestino);
 
                     //TODO: não está fazendo o put do json
+                    System.out.println("Contas após transferência: " + contas);
                     salvarArquivoJSON("src/mocks/contas.json", contas);
 
                     System.out.println("Transferência realizada com sucesso!");
