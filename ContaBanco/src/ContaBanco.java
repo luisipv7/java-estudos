@@ -149,8 +149,8 @@ public class ContaBanco {
     public void transferir(double valor, int numeroAgenciaOrigem, int numeroContaOrigem, int numeroAgenciaDestino, int numeroContaDestino) {
         try {
             Map<String, Map<String, Object>> contas = lerArquivoJSON("src/mocks/contas.json");
-            String keyOrigem = numeroAgenciaOrigem + "" + numeroContaOrigem;
-            String keyDestino = numeroAgenciaDestino + "" + numeroContaDestino;
+            String keyOrigem = String.format("%03d%08d", numeroAgenciaOrigem, numeroContaOrigem);
+            String keyDestino = String.format("%03d%08d", numeroAgenciaDestino,numeroContaDestino);
 
             if (contas.containsKey(keyOrigem) && contas.containsKey(keyDestino)) {
                 Map<String, Object> contaOrigem = contas.get(keyOrigem);
@@ -169,6 +169,7 @@ public class ContaBanco {
                     contas.put(keyOrigem, contaOrigem);
                     contas.put(keyDestino, contaDestino);
 
+                    //TODO: não está fazendo o put do json
                     salvarArquivoJSON("src/mocks/contas.json", contas);
 
                     System.out.println("Transferência realizada com sucesso!");
