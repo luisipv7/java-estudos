@@ -11,8 +11,8 @@ public class App {
         System.out.println("2 - Depositar");
         System.out.println("3 - Sacar");
         System.out.println("4 - Consultar saldo");
-        System.out.println("5 - Sair");
-        System.out.println("6 - Transferir");
+        System.out.println("5 - Transferir");
+        System.out.println("6 - Sair");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -57,7 +57,7 @@ public class App {
                 int numeroContaSaldo = scanner.nextInt();
                 conta.consultarSaldo(numeroAgenciaSaldo, numeroContaSaldo);
                 break;
-            case 6:
+            case 5:
                 System.out.println("Digite o número da agência de origem:");
                 int numeroAgenciaOrigem = scanner.nextInt();
                 System.out.println("Digite o número da conta de origem:");
@@ -70,7 +70,7 @@ public class App {
                 double valorTransferencia = scanner.nextDouble();
                 conta.transferir(valorTransferencia, numeroAgenciaOrigem, numeroContaOrigem, numeroAgenciaDestino, numeroContaDestino);
                 break;
-            case 5:
+            case 6:
                 System.out.println("Obrigado por utilizar o Banco BetaGama!");
                 break;
             default:
