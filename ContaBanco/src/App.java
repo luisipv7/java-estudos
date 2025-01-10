@@ -57,7 +57,7 @@ public class App {
                 int numeroContaSaldo = scanner.nextInt();
                 conta.consultarSaldo(numeroAgenciaSaldo, numeroContaSaldo);
                 break;
-                case 6:
+            case 6:
                 System.out.println("Digite o número da agência de origem:");
                 int numeroAgenciaOrigem = scanner.nextInt();
                 System.out.println("Digite o número da conta de origem:");
